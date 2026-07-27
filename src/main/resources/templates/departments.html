@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Departments</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>Employee Management System</h1>
+
+    <nav>
+
+        <a href="/">Home</a>
+        <a href="/employees">Employees</a>
+        <a href="/departments">Departments</a>
+        <a href="/reports">Reports</a>
+        <a href="/about">About</a>
+
+    </nav>
+
+</header>
+
+<main class="employee-page">
+
+    <div class="page-header">
+
+        <h2 style="color:rgb(255, 14, 138);">Department Dashboard</h2>
+
+    </div>
+
+    <div class="dashboard-cards">
+
+        <div class="card">
+
+            <h3>Total Departments</h3>
+
+            <p th:text="${departments.size()}">0</p>
+
+        </div>
+
+    </div>
+
+    <table>
+
+        <thead>
+
+        <tr>
+
+            <th>Department Name</th>
+            <th>Total Employees</th>
+
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        <tr th:each="department : ${departments}">
+    <td>
+        <a th:href="@{/departments/{department}(department=${department.department})}"
+           th:text="${department.department}">
+        </a>
+    </td>
+
+    <td th:text="${department.employeeCount}"></td>
+</tr>
+
+        </tbody>
+
+    </table>
+
+</main>
+
+<footer>
+
+    <p>© 2026 Employee Management System</p>
+
+    <p>
+        Developed by <strong>Abhijeet Kumar</strong>
+    </p>
+
+    <p>
+        📧 abhijeetnandani@gmail.com |
+        <a href="https://github.com/Omega-753/Testing" target="_blank">
+            GitHub
+        </a>
+    </p>
+
+</footer>
+
+</body>
+
+</html>
+

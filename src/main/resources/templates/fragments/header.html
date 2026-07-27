@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<body>
+
+<header th:fragment="header">
+
+    <div class="header-top">
+
+        <div class="branding">
+            <h1>
+    <span class="logo-icon">👥</span>
+    Employee Management System
+</h1>
+            <p>Enterprise HR Portal</p>
+        </div>
+
+        <div class="user-panel">
+
+            <span class="welcome-user">
+                👤 Welcome,
+                <strong sec:authentication="name"></strong>
+            </span>
+
+            <form th:action="@{/logout}" method="post">
+                <button class="logout-btn" type="submit">
+                    Logout
+                </button>
+            </form>
+
+        </div>
+
+    </div>
+
+    <nav class="main-nav">
+
+        <a th:href="@{/}">Home</a>
+
+        <a th:href="@{/employees}">Employees</a>
+
+        <a th:href="@{/departments}">Departments</a>
+
+        <a th:href="@{/reports}">Reports</a>
+
+        <a th:href="@{/about}">About</a>
+
+    </nav>
+
+</header>
+
+</body>
+</html>

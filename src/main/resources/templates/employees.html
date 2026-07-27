@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Employee Dashboard</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>Employee Management System</h1>
+
+    <nav>
+
+        <a href="/">Home</a>
+        <a href="/employees">Employees</a>
+        <a href="/departments">Departments</a>
+        <a href="/reports">Reports</a>
+        <a href="/about">About</a>
+
+    </nav>
+
+</header>
+
+<main class="employee-page">
+
+    <div class="page-header">
+
+        <h2>Employee Dashboard</h2>
+
+        <a href="/add-employee" class="add-btn">
+            + Add Employee
+        </a>
+
+    </div>
+
+    <!-- Dashboard Cards -->
+
+    <div class="dashboard-cards">
+
+        <div class="card">
+            <h3>Total Employees</h3>
+            <p th:text="${employees.size()}">0</p>
+        </div>
+
+        <div class="card">
+            <h3>Departments</h3>
+            <p th:text="${departmentCount}">0</p>
+        </div>
+
+    </div>
+
+    <!-- Employee Search -->
+
+    <div class="employee-section">
+
+        <h3>Employees</h3>
+
+        <div class="search-container">
+
+            <label for="employeeSearch">Search Employee</label>
+
+            <div class="search-box">
+
+                <span class="search-icon">🔍</span>
+
+                <input
+                        type="text"
+                        id="employeeSearch"
+                        placeholder="Search Employee...">
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Employee Table -->
+
+    <table id="employeeTable">
+        <p id="noEmployeeMessage" style="display:none; margin-top:20px; text-align:center; font-size:18px; color:#666;">
+    🔍 No employee found.
+</p>
+
+        <thead>
+
+        <tr>
+
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Department</th>
+            <th>Email</th>
+            <th>Resume</th>
+            <th>Actions</th>
+
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        <tr th:each="employee : ${employees}">
+
+            <td th:text="${employee.employeeId}"></td>
+
+            <td th:text="${employee.firstName}"></td>
+
+            <td th:text="${employee.lastName}"></td>
+
+            <td th:text="${employee.department}"></td>
+
+            <td th:text="${employee.email}"></td>
+
+            <td>
+
+                <span th:if="${employee.resumeFileName == null or #strings.isEmpty(employee.resumeFileName)}">
+                    —
+                </span>
+
+                <a
+                        th:if="${employee.resumeFileName != null and !#strings.isEmpty(employee.resumeFileName)}"
+                        th:href="@{/resume/{fileName}(fileName=${employee.resumeFileName})}"
+                        target="_blank"
+                        class="resume-btn">
+
+                    📄 View Resume
+
+                </a>
+
+            </td>
+
+            <td>
+
+                <a
+                        th:href="@{/edit-employee/{employeeId}(employeeId=${employee.employeeId})}"
+                        class="edit-btn">
+
+                    Edit
+
+                </a>
+
+                <a
+                        th:href="@{/delete-employee/{id}(id=${employee.employeeId})}"
+                        class="delete-btn"
+                        onclick="return confirm('Are you sure you want to delete this employee?');">
+
+                    Delete
+
+                </a>
+
+            </td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+</main>
+
+<footer>
+
+    <p>© 2026 Employee Management System</p>
+
+    <p>
+        Developed by <strong>Abhijeet Kumar</strong>
+    </p>
+
+    <p>
+        📧 abhijeetnandani@gmail.com |
+        <a href="https://github.com/Omega-753/Testing" target="_blank">
+            GitHub
+        </a>
+    </p>
+
+</footer>
+
+</body>
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const searchInput = document.getElementById("employeeSearch");
+    const tableRows = document.querySelectorAll("#employeeTable tbody tr");
+    const noEmployeeMessage = document.getElementById("noEmployeeMessage");
+
+    searchInput.addEventListener("keyup", function () {
+
+        const searchText = this.value.toLowerCase().trim();
+
+        let visibleRows = 0;
+
+        tableRows.forEach(function (row) {
+
+            const rowText = row.textContent.toLowerCase();
+
+            if (rowText.includes(searchText)) {
+
+                row.style.display = "";
+                visibleRows++;
+
+            } else {
+
+                row.style.display = "none";
+
+            }
+
+        });
+
+        if (visibleRows === 0) {
+            noEmployeeMessage.style.display = "block";
+        } else {
+            noEmployeeMessage.style.display = "none";
+        }
+
+    });
+
+});
+
+</script>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EMS</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+
+<body>
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<section class="hero">
+
+    <div class="hero-text">
+
+        <span class="badge">
+            Enterprise Solution
+        </span>
+
+        <h2 class="hero-title">
+
+            Employee<br>
+
+            Management<br>
+
+            <span class="highlight">
+                Made Simple.
+            </span>
+
+        </h2>
+
+        <p>
+            Manage your workforce, departments and organizational data
+            through one secure and modern platform.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a th:href="@{/employees}" class="btn-primary">
+                View Employees
+            </a>
+
+            <a th:href="@{/explore-ems}" class="btn-secondary">
+                Explore EMS
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="hero-image">
+
+        <img th:src="@{/images/hero.svg}" alt="Employee Illustration">
+
+    </div>
+
+</section>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+
+</html>

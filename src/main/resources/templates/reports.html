@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reports Dashboard</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>Employee Management System</h1>
+
+    <nav>
+
+        <a href="/">Home</a>
+        <a href="/employees">Employees</a>
+        <a href="/departments">Departments</a>
+        <a href="/reports">Reports</a>
+        <a href="/about">About</a>
+
+    </nav>
+
+</header>
+
+<main class="employee-page">
+
+    <div class="page-header">
+
+        <div>
+
+            <h2>Reports Dashboard</h2>
+
+            <p style="color:#666;margin-top:8px;">
+                View employee analytics and department-wise statistics.
+            </p>
+
+        </div>
+
+        <a href="/reports/export" class="export-btn">
+            ⬇ Export CSV
+        </a>
+
+    </div>
+
+    <!-- Summary Cards -->
+
+    <div class="dashboard-cards">
+
+        <div class="card">
+
+            <h3>Total Employees</h3>
+
+            <p th:text="${totalEmployees}">0</p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Total Departments</h3>
+
+            <p th:text="${departmentCount}">0</p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Employees With Resume</h3>
+
+            <p th:text="${employeesWithResume}">0</p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Average / Department</h3>
+
+            <p th:text="${averageEmployeesPerDepartment}">0</p>
+
+        </div>
+
+    </div>
+
+    <h3 style="margin-bottom:20px;color:#23408e;">
+        Department-wise Employee Distribution
+    </h3>
+
+    <table>
+
+        <thead>
+
+        <tr>
+
+            <th>Department</th>
+            <th>Employee Count</th>
+            <th style="width:45%">Distribution</th>
+
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        <tr th:each="department : ${departmentStatistics}">
+
+            <td th:text="${department.departmentName}"></td>
+
+            <td th:text="${department.employeeCount}"></td>
+
+            <td>
+
+                <div class="progress-bar">
+
+                    <div class="progress-fill"
+                         th:style="'width:' + ${department.percentage} + '%'">
+
+                        <span th:text="${department.percentage + '%'}"></span>
+
+                    </div>
+
+                </div>
+
+            </td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+</main>
+
+<footer>
+
+    <p>© 2026 Employee Management System</p>
+
+    <p>
+        Developed by <strong>Abhijeet Kumar</strong>
+    </p>
+
+</footer>
+
+</body>
+
+</html>

@@ -1,0 +1,722 @@
+/* Employee Management System v3.1 */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#FAF9F6;
+    color:#333333;
+    line-height:1.6;
+
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+a{
+    text-decoration:none;
+}
+
+/* ================= HEADER ================= */
+
+header{
+    background:#23408e;
+    color:#fff;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 60px;
+    box-shadow:0 4px 15px rgba(0,0,0,.15);
+}
+
+header h1{
+    font-size:32px;
+}
+
+nav{
+    display:flex;
+    gap:30px;
+}
+
+nav a{
+    color:#fff;
+    font-weight:600;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#FFD166;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:60px;
+    padding:70px;
+    min-height:80vh;
+}
+
+.hero-text{
+    flex:1;
+}
+
+.hero-image{
+    flex:1;
+    display:flex;
+    justify-content:center;
+}
+
+.hero-image img{
+    width:100%;
+    max-width:650px;
+}
+
+.badge{
+    display:inline-block;
+    padding:8px 18px;
+    background:#EEF2FF;
+    color:#4F46E5;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.hero-title{
+    font-size:64px;
+    color:#23408e;
+    line-height:1.1;
+    margin-bottom:20px;
+}
+
+.highlight{
+    color:#4F6BFF;
+}
+
+.hero p{
+    font-size:18px;
+    color:#555;
+    margin-bottom:35px;
+    max-width:600px;
+}
+
+/* ================= BUTTONS ================= */
+
+.hero-buttons{
+    display:flex;
+    gap:20px;
+}
+
+.btn-primary,
+.add-btn{
+    display:inline-block;
+    background:#23408e;
+    color:#fff;
+    padding:14px 28px;
+    border-radius:8px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.btn-primary:hover,
+.add-btn:hover{
+    background:#3657c8;
+}
+
+.btn-secondary{
+    display:inline-block;
+    border:2px solid #23408e;
+    color:#23408e;
+    padding:14px 28px;
+    border-radius:8px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.btn-secondary:hover{
+    background:#23408e;
+    color:#fff;
+}
+
+/* ================= PAGES ================= */
+
+.employee-page{
+    padding:60px 70px;
+}
+
+.page-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.page-header h2,
+.form-container h2{
+    color:#23408e;
+    font-size:42px;
+}
+
+/* ================= DASHBOARD ================= */
+
+.dashboard-cards{
+    display:flex;
+    gap:25px;
+    flex-wrap:wrap;
+    margin-bottom:35px;
+}
+
+.card{
+    width:260px;
+    background:#FFFCF8;
+    padding:25px;
+    border-radius:14px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    transition:all .3s ease;
+}
+
+.card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 18px 35px rgba(0,0,0,.15);
+
+}
+
+.card h3{
+    color:#666;
+    margin-bottom:10px;
+}
+
+.card p{
+    font-size:42px;
+    color:#23408e;
+    font-weight:bold;
+}
+
+/* ================= TABLE ================= */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:#FFFFFF;
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+th{
+    background:#23408e;
+    color:#fff;
+    padding:18px;
+    text-align:left;
+}
+
+td{
+    padding:18px;
+    border-bottom:1px solid #EAEAEA;
+}
+
+tbody tr:nth-child(even){
+    background:#FCFBF8;
+}
+
+tbody tr:hover{
+
+    background:#EDF2FF;
+
+    transition:.3s;
+
+}
+
+/* ================= ACTION BUTTONS ================= */
+
+.edit-btn,
+.delete-btn{
+    border:none;
+    padding:9px 16px;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.edit-btn{
+    background:#FFC107;
+    color:#222;
+    margin-right:8px;
+}
+
+.edit-btn:hover{
+    background:#E0A800;
+}
+
+.delete-btn{
+    background:#DC3545;
+    color:#fff;
+}
+
+.delete-btn:hover{
+    background:#B71C1C;
+}
+
+/* ================= FORM ================= */
+
+.form-container{
+    max-width:800px;
+    margin:0 auto;
+}
+
+.employee-form{
+    background:#FFFCF8;
+    padding:40px;
+    border-radius:15px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    margin-top:25px;
+}
+
+.employee-form label{
+    display:block;
+    margin:18px 0 8px;
+    font-weight:bold;
+}
+
+.employee-form input{
+    width:100%;
+    padding:14px;
+    border:1px solid #D5D5D5;
+    border-radius:8px;
+    font-size:16px;
+    background:#FFFFFF;
+}
+
+.employee-form input:focus{
+    outline:none;
+    border-color:#23408e;
+    box-shadow:0 0 8px rgba(35,64,142,.15);
+}
+
+.employee-form button{
+    width:100%;
+    margin-top:30px;
+    background:#23408e;
+    color:#fff;
+    border:none;
+    padding:16px;
+    border-radius:8px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.employee-form button:hover{
+    background:#3657c8;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    margin-top:auto;
+    background:#23408e;
+    color:#F6F6F6;
+    text-align:center;
+    padding:25px 15px;
+}
+
+footer p{
+    margin:8px 0;
+    font-size:15px;
+}
+
+footer a{
+    color:#F7AF06;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+footer a:hover{
+    text-decoration:underline;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:900px){
+
+    header{
+        flex-direction:column;
+        gap:20px;
+    }
+
+    .hero{
+        flex-direction:column;
+        text-align:center;
+        padding:40px;
+    }
+
+    .hero-title{
+        font-size:46px;
+    }
+
+    .hero-buttons{
+        justify-content:center;
+    }
+
+    .page-header{
+        flex-direction:column;
+        gap:20px;
+        align-items:flex-start;
+    }
+
+    .employee-page{
+        padding:30px;
+    }
+
+    .dashboard-cards{
+        flex-direction:column;
+    }
+
+    .card{
+        width:100%;
+    }
+
+    table{
+        display:block;
+        overflow-x:auto;
+    }
+    
+}
+
+/* ================================
+   Employee Section
+================================ */
+
+.employee-section{
+    margin:40px 0 25px;
+}
+
+.employee-section h3{
+    font-size:28px;
+    color:#23408e;
+    margin-bottom:25px;
+}
+
+.search-container{
+    max-width:550px;
+}
+
+.search-container label{
+    display:block;
+    font-size:16px;
+    font-weight:600;
+    color:#333;
+    margin-bottom:10px;
+}
+
+.search-box{
+    display:flex;
+    align-items:center;
+    background:#fff;
+    border:2px solid #d9d9d9;
+    border-radius:10px;
+    padding:0 15px;
+    transition:.3s;
+}
+
+.search-box:focus-within{
+    border-color:#23408e;
+    box-shadow:0 0 0 4px rgba(35,64,142,.12);
+}
+
+.search-icon{
+    font-size:18px;
+    margin-right:10px;
+}
+
+.search-box input{
+    width:100%;
+    border:none;
+    outline:none;
+    padding:14px 0;
+    font-size:16px;
+    background:transparent;
+
+
+} 
+/* ================================
+   Department Progress Bar
+================================ */
+
+.progress-bar{
+
+    width:100%;
+    height:24px;
+
+    background:#E9ECEF;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+}
+
+.progress-fill{
+
+    height:100%;
+
+    background:linear-gradient(90deg,#23408e,#4F6BFF);
+
+    border-radius:30px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:flex-end;
+
+    padding-right:10px;
+
+    color:white;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    transition:width .6s ease;
+
+}
+/* Center Employee Count column */
+
+table th:nth-child(2),
+table td:nth-child(2){
+    text-align:center;
+}
+/* ================================
+   Export Button
+================================ */
+
+.export-btn{
+
+    background:#23408e;
+
+    color:#fff;
+
+    padding:12px 22px;
+
+    border-radius:8px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.export-btn:hover{
+
+    background:#3657c8;
+
+    transform:translateY(-2px);
+
+}
+/* Logout Button */
+
+.logout-form {
+    display: inline;
+    margin-left: 10px;
+}
+
+.logout-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 0;
+}
+
+.logout-btn:hover {
+    color: #ffd54f;
+}
+/* ==========================================
+   HEADER V2
+========================================== */
+
+header{
+
+    background:#23408e;
+    color:white;
+
+    display:flex;
+    flex-direction:column;
+
+    padding:20px 60px;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.15);
+
+}
+
+.header-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    width:100%;
+
+}
+
+.branding h1{
+
+    font-size:34px;
+
+    margin-bottom:5px;
+
+}
+
+.branding{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.branding h1{
+
+    font-size:38px;
+
+    margin:0;
+
+}
+
+.branding p{
+
+    margin-top:6px;
+
+    margin-left:75px;
+
+    color:#d8e4ff;
+
+    font-size:16px;
+
+}
+.user-panel{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+.welcome-user{
+
+    font-size:17px;
+
+    font-weight:600;
+
+}
+
+.main-nav{
+
+    margin-top:22px;
+
+    display:flex;
+
+    gap:40px;
+
+    justify-content:flex-start;
+
+    font-size:17px;
+
+}
+
+.main-nav a{
+
+    color:white;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.main-nav a:hover{
+
+    color:#FFD166;
+
+}
+
+.logout-btn{
+
+    background:#dc3545;
+
+    color:white;
+
+    border:none;
+
+    padding:10px 20px;
+
+    border-radius:8px;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.logout-btn:hover{
+
+    background:#b71c1c;
+
+}
+
+@media(max-width:900px){
+
+    .header-top{
+
+        flex-direction:column;
+
+        gap:20px;
+
+        align-items:flex-start;
+
+    }
+
+    .main-nav{
+
+        flex-wrap:wrap;
+
+        gap:18px;
+
+    }
+    
+}    
+     /* Logo */
+
+.logo-icon{
+
+    font-size:36px;
+
+    margin-right:12px;
+
+    vertical-align:middle;
+
+}
