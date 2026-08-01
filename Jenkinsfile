@@ -15,7 +15,12 @@ pipeline {
                 bat 'mvn clean install'
             }
         }
-
+        
+        stage('Semgrep Version') {
+    steps {
+        bat 'semgrep --version'
+    }
+}
         stage('Archive') {
             steps {
                 archiveArtifacts artifacts: 'target/*.jar'
