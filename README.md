@@ -97,3 +97,5 @@ This commit was created to verify GitHub Webhook integration with Jenkins.
 - Jenkins Freestyle Job
 
 Pipeline trigger test
+
+Testing Pipeline Only
