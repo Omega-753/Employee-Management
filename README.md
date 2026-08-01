@@ -71,3 +71,11 @@ This repository will gradually evolve into a complete DevSecOps project by integ
 **Abhijeet Kumar**
 
 GitHub: https://github.com/Omega-753
+
+## Jenkins CI Test
+
+This commit was created to verify GitHub Webhook integration with Jenkins.
+
+- Automatic build trigger
+- GitHub Webhook
+- Jenkins Freestyle Job
