@@ -14,7 +14,7 @@ public class VulnerableExamples {
 
     public void weakHash(String input) throws NoSuchAlgorithmException {
 
-        MessageDigest md = MessageDigest.getInstance("MD5");
+        MessageDigest md = MessageDigest.getInstance("SHA-512");
 
         byte[] hash = md.digest(input.getBytes());
 
