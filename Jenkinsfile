@@ -16,7 +16,7 @@ pipeline {
 
         stage('Semgrep Scan') {
             steps {
-                bat '"%SEMGREP%" --config p/java --json --output semgrep-report.json .'
+                bat '"%SEMGREP%" --config p/java --error --json --output semgrep-report.json .'
             }
         }
 
