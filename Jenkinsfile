@@ -2,6 +2,10 @@ pipeline {
 
     agent any
 
+    environment {
+        SEMGREP = 'C:\\Users\\Abhij\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\semgrep.exe'
+    }
+
     stages {
 
         stage('Checkout') {
@@ -10,23 +14,22 @@ pipeline {
             }
         }
 
+        stage('Semgrep Scan') {
+            steps {
+                bat '"%SEMGREP%" --config p/java --json --output semgrep-report.json .'
+            }
+        }
+
         stage('Build') {
             steps {
                 bat 'mvn clean install'
             }
         }
-        
-        stage('Semgrep Version') {
-    steps {
-        bat 'semgrep --version'
-    }
-}
+
         stage('Archive') {
             steps {
-                archiveArtifacts artifacts: 'target/*.jar'
+                archiveArtifacts artifacts: 'target/*.jar, semgrep-report.json', fingerprint: true
             }
         }
-
     }
-
 }
