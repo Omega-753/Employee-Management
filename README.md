@@ -99,3 +99,5 @@ This commit was created to verify GitHub Webhook integration with Jenkins.
 Pipeline trigger test
 
 Testing Pipeline Only_1
+
+4/8/26 - Integrating gitleaks and checking gunctionality 
