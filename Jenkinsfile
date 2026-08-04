@@ -4,6 +4,7 @@ pipeline {
 
     environment {
         SEMGREP = 'C:\\Users\\Abhij\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\semgrep.exe'
+        GITLEAKS = 'E:\\SecureDevOps-Lab\\tools\\gitleaks\\gitleaks.exe'
     }
 
     stages {
@@ -19,7 +20,11 @@ pipeline {
                 bat '"%SEMGREP%" --config p/java --error --json --output semgrep-report.json .'
             }
         }
-
+        stage('Gitleaks Scan') {
+            steps {
+            bat '"%GITLEAKS%" detect --no-git --source . --report-format json --report-path gitleaks-report.json'
+            }
+        }
         stage('Build') {
             steps {
                 bat 'mvn clean install'
@@ -28,7 +33,7 @@ pipeline {
 
         stage('Archive') {
             steps {
-                archiveArtifacts artifacts: 'target/*.jar, semgrep-report.json', fingerprint: true
+                archiveArtifacts artifacts: 'target/*.jar, semgrep-report.json, gitleaks-report.json', fingerprint: true
             }
         }
     }
